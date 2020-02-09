@@ -16,22 +16,21 @@ import java.sql.Statement;
  * @author Hamza
  */
 public class TestConection {
-public class TestCOnn {
-   
-       Connection con;
-       Statement stm;
-       ResultSet rst;
-     public  void connexion(){
-        try{    
-        Class.forName("com.mysql.jdbc.Driver");
-           con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/microprojet?useSSL=false","root","");
-           stm=con.createStatement();
-           System.out.println("Bien");
-       }catch(ClassNotFoundException | SQLException e){
-           System.out.println("Erreur de chargement de pilote:"+e);
-        }
+
+   private static Connection con;
+   static {
+    try{    
+    Class.forName("com.mysql.jdbc.Driver");
+       con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/microprojet?useSSL=false","root","");
+       System.out.println("Bien");
+   }catch(ClassNotFoundException | SQLException e){
+       System.out.println("Erreur de chargement de pilote:"+e);
     }
-}
+   }
+   
+   public static Connection getCon(){return con;}
+   
+
 
 }
  
